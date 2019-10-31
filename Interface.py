@@ -9,17 +9,17 @@ lum_captor  = 0
 hum_captor = 0
 
 class Info(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.ser = serial.Serial('COM8', 9600)
+    	def __init__(self):
+		threading.Thread.__init__(self)
+		self.ser = serial.Serial('COM8', 9600)
 
-    def run(self):
-        while True:
-            global lum_captor
-            global hum_captor
-            self.value = str(self.ser.readline()).split("'")[1].split("\\")[0].split('_')
-            hum_captor = self.value[0]
-            lum_captor = self.value[1]
+    	def run(self):
+        	while True:
+			global lum_captor
+			global hum_captor
+			self.value = str(self.ser.readline()).split("'")[1].split("\\")[0].split('_')
+			hum_captor = self.value[0]
+			lum_captor = self.value[1]
 
 
 class Interface(threading.Thread):
@@ -95,7 +95,6 @@ class Interface(threading.Thread):
 			server.login('gaetan.jonathan.bakary@esti.mg','**************')
 			server.send_message(message)
 			server.quit()
-
 		except:
 			pass
 
